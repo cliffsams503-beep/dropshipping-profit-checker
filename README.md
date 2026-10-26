@@ -3,7 +3,7 @@
 A single-page, static profit calculator for dropshippers. Plain HTML/CSS/JS: no backend, no accounts, no tracking, no external requests. Open `index.html` in any browser.
 
 ## Files
-- `index.html`, `style.css`, `app.js`: the page and UI wiring
+- `index.html`, `style.css`, `ui.js`: the page and UI wiring
 - `calc.js`: pure calculation functions (browser + Node)
 - `calc.test.js`: automated tests (`node --test calc.test.js`)
 - `screenshot.png`: desktop screenshot of the page
