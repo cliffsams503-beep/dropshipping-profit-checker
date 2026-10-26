@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dropshipping Profit Checker – real profit after shipping &amp; fees</title>
+<meta name="description" content="Free profit calculator for dropshippers: enter supplier cost, China shipping and your price to see real profit, margin, markup, break-even and a suggested price.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <h1>Dropshipping Profit Checker</h1>
+  <p>See your <strong>real</strong> profit per order after supplier cost, shipping and payment fees, before you list.</p>
+</header>
+
+<main class="wrap">
+  <section class="card" aria-labelledby="in-h">
+    <div class="row-between">
+      <h2 id="in-h">Your numbers</h2>
+      <div class="btns">
+        <button type="button" id="preset" class="ghost">Load example</button>
+        <button type="button" id="clear" class="ghost">Clear</button>
+      </div>
+    </div>
+    <p id="preset-note" class="note" hidden></p>
+    <form id="form" novalidate autocomplete="off">
+      <div class="grid">
+        <label>Product cost <span class="hint">supplier price, e.g. CJdropshipping</span>
+          <span class="money"><input id="productCost" inputmode="decimal" placeholder="6.25"></span>
+          <span class="err" id="productCost-err"></span></label>
+        <label>Shipping to US <span class="hint">what the supplier charges to ship it</span>
+          <span class="money"><input id="shippingCost" inputmode="decimal" placeholder="0.00"></span>
+          <span class="err" id="shippingCost-err"></span></label>
+        <label>Other costs per order <span class="hint">packaging, ads, apps (optional)</span>
+          <span class="money"><input id="otherCosts" inputmode="decimal" value="0"></span>
+          <span class="err" id="otherCosts-err"></span></label>
+        <label>Your sale price
+          <span class="money"><input id="salePrice" inputmode="decimal" placeholder="12.99"></span>
+          <span class="err" id="salePrice-err"></span></label>
+        <label>Shipping charged to customer <span class="hint">0 = free shipping</span>
+          <span class="money"><input id="shippingCharged" inputmode="decimal" value="0"></span>
+          <span class="err" id="shippingCharged-err"></span></label>
+        <fieldset class="fee">
+          <legend>Payment fee <span class="hint">Shopify Basic online card rate: 2.9% + 30¢</span></legend>
+          <div class="fee-row">
+            <label class="pct"><span class="sr">Fee percent</span><input id="feePct" inputmode="decimal" value="2.9"><span>%</span></label>
+            <span>+</span>
+            <label class="money sm"><span class="sr">Fixed fee</span><input id="feeFixed" inputmode="decimal" value="0.30"></label>
+          </div>
+          <span class="err" id="feePct-err"></span><span class="err" id="feeFixed-err"></span>
+        </fieldset>
+      </div>
+      <div class="slider">
+        <label for="targetMarkupPct">Target markup over landed cost: <strong id="markupOut">100% (2× landed)</strong></label>
+        <input type="range" id="targetMarkupPct" min="30" max="100" step="5" value="100">
+        <div class="ticks"><span>30%</span><span>65%</span><span>95%</span><span>2×</span></div>
+      </div>
+    </form>
+  </section>
+
+  <section class="card results" aria-live="polite" aria-labelledby="out-h">
+    <h2 id="out-h">Results</h2>
+    <div id="badge" class="badge neutral">Enter a product cost to start</div>
+    <dl class="stats">
+      <div><dt>Landed cost</dt><dd id="o-landed">–</dd><small>product + shipping</small></div>
+      <div><dt>Total cost / order</dt><dd id="o-total">–</dd><small id="o-total-sub">incl. fees &amp; other costs</small></div>
+      <div class="big"><dt>Profit / order</dt><dd id="o-profit">–</dd></div>
+      <div><dt>Profit margin</dt><dd id="o-margin">–</dd><small>of what the customer pays</small></div>
+      <div><dt>Markup</dt><dd id="o-markup">–</dd><small>over landed cost</small></div>
+      <div><dt>Break-even price</dt><dd id="o-be">–</dd><small>profit = $0</small></div>
+    </dl>
+    <div class="suggest">
+      <div><span class="lbl">Suggested price <span id="o-sug-lbl">(2× landed, fee covered)</span></span>
+        <span class="val" id="o-sug">–</span> <span class="charm" id="o-charm"></span></div>
+      <div><span class="lbl">Lowest price for a 50% margin</span> <span class="val" id="o-p50">–</span></div>
+      <button type="button" id="use-sug" class="primary" disabled>Use suggested price</button>
+    </div>
+  </section>
+
+  <section class="card how" aria-labelledby="how-h">
+    <h2 id="how-h">How it's calculated</h2>
+    <ul>
+      <li><b>Landed cost</b> = product cost + shipping to US.</li>
+      <li><b>Customer pays</b> = sale price + shipping charged to customer.</li>
+      <li><b>Payment fee</b> = customer pays × fee % + fixed fee (default 2.9% + $0.30, Shopify Basic online card rate).</li>
+      <li><b>Total cost</b> = landed cost + other costs + payment fee. <b>Profit</b> = customer pays − total cost.</li>
+      <li><b>Margin</b> = profit ÷ customer pays. <b>Markup</b> = (customer pays − landed) ÷ landed.</li>
+      <li><b>Suggested price</b>: the price where, after the fee and other costs, you keep landed × (1 + target markup). At 100% that's the "double your landed cost" rule with the fee covered. Rounded up to .99 as an option.</li>
+      <li><b>Break-even</b>: the price where profit is exactly $0.</li>
+      <li><b>50% margin badge</b>: passes when profit is at least half of what the customer pays.</li>
+    </ul>
+    <p class="note">Estimates only. Doesn't include refunds, chargebacks, currency conversion (+1–1.5% for international cards), taxes or your monthly plan fee. Runs entirely in your browser; nothing is sent anywhere.</p>
+  </section>
+</main>
+<footer><p>Dropshipping Profit Checker v1 · no sign-up, no tracking</p></footer>
+<script src="calc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
