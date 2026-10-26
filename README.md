@@ -39,6 +39,6 @@ Result: fee $0.68, profit $6.06, margin 46.7% (below 50% after fees, though 51.9
 It's a static site, so any free static host works, e.g. a Render Static Site (publish directory = this folder, no build command), GitHub Pages, Cloudflare Pages or Netlify.
 
 ## Live
-Hosted free as a Render static site: https://profit-checker.onrender.com (no build step; publish directory is the repo root).
+Hosted free as a Render static site: https://profit-checker-odn5.onrender.com (no build step; publish directory is the repo root).
 
 ![Screenshot](screenshot.png)
